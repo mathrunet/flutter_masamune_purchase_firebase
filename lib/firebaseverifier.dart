@@ -11,8 +11,8 @@ class FirebaseVerifier {
   /// [purchase]: PurchaseDetails.
   /// [product]: The purchased product.
   /// [core]: Purchase Core instance.
-  static Future<bool> verify(PurchaseDetails purchase, PurchaseProduct product,
-      PurchaseCore core) async {
+  static Future<bool> verifyAndDeliver(PurchaseDetails purchase,
+      PurchaseProduct product, PurchaseCore core) async {
     if (Config.isAndroid) {
       if (core.androidVerifierOptions == null ||
           isEmpty(core.androidRefreshToken) ||
