@@ -17,9 +17,12 @@ dependencies:
   masamune_core: ^0.2.3
   masamune_flutter: ^0.2.1
   masamune_localize: ^0.2.0
-  masamune_purchase: ^0.1.0
+  #masamune_purchase: ^0.1.0
   masamune_firebase: ^0.1.0
   masamune_firebase_mobile: ^0.1.0
+
+  masamune_purchase:
+    path: ../masamune_purchase/
 
 dev_dependencies:
   flutter_test:
