@@ -3,7 +3,7 @@ part of masamune.purchase.firebase;
 /// [PurchaseCore] is used as a callback for [onVerify] of [PurchaseCore].
 ///
 /// The signature is verified and the receipt is verified by firebase.
-class FirebaseVerifier {
+class FirebasePurchaseDelegate {
   /// [PurchaseCore] is used as a callback for [onVerify] of [PurchaseCore].
   ///
   /// The signature is verified and the receipt is verified by firebase.

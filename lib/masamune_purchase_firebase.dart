@@ -20,4 +20,4 @@ export 'package:masamune_purchase/masamune_purchase.dart';
 export 'package:masamune_firebase/masamune_firebase.dart';
 export 'package:masamune_firebase_mobile/masamune_firebase_mobile.dart';
 
-part 'firebaseverifier.dart';
+part 'firebasepurchasedelegate.dart';
