@@ -33,7 +33,8 @@ class FirebasePurchaseDelegate {
             "productId": purchase.productID,
             "purchaseToken": purchase.billingClientPurchase.purchaseToken,
             "path": core.deliverOptions.path?.applyTags(),
-            "value": product.value
+            "value": product.value,
+            "user": core.userId
           });
       Log.msg(task.data);
       if (isEmpty(task.data)) return false;
@@ -51,7 +52,8 @@ class FirebasePurchaseDelegate {
             "password": core.iosVerifierOptions.sharedSecret,
             "productId": purchase.productID,
             "path": core.deliverOptions.path?.applyTags(),
-            "value": product.value
+            "value": product.value,
+            "user": core.userId
           });
       Log.msg(task.data);
       if (isEmpty(task.data)) return false;
