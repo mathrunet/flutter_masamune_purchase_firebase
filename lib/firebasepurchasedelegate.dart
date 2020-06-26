@@ -36,7 +36,6 @@ class FirebasePurchaseDelegate {
             "value": product.value,
             "user": core.userId
           });
-      Log.msg(task.data);
       if (isEmpty(task.data)) return false;
       Map map = task.data as Map;
       if (map == null ||
@@ -55,9 +54,11 @@ class FirebasePurchaseDelegate {
             "value": product.value,
             "user": core.userId
           });
-      Log.msg(task.data);
       if (isEmpty(task.data)) return false;
       Map map = task.data as Map;
+      if (map == null ||
+          !map.containsKey("status") ||
+          map["status"] != 0) return false;
     }
     return true;
   }
