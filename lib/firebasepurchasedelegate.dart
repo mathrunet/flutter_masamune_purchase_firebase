@@ -74,17 +74,7 @@ class FirebasePurchaseDelegate {
                 "productId": purchase.productID,
                 "purchaseToken": purchase.billingClientPurchase.purchaseToken,
                 "path": product.targetPath?.applyTags(),
-                "user": core.userId,
-                "expiryDateKey": core.subscribeOptions.expiryDateKey,
-                "renewDuration":
-                    core.subscribeOptions.renewDuration.inMilliseconds,
-                "userIDKey": core.subscribeOptions.userIDKey,
-                "platformKey": core.subscribeOptions.platformKey,
-                "tokenKey": core.subscribeOptions.tokenKey,
-                "packageNameKey": core.subscribeOptions.packageNameKey,
-                "orderIDKey": core.subscribeOptions.orderIDKey,
-                "productIDKey": core.subscribeOptions.productIDKey,
-                "expiredKey": core.subscribeOptions.expiredKey
+                "user": core.userId
               });
           if (isEmpty(task.data)) return false;
           Map map = task.data as Map;
@@ -141,17 +131,7 @@ class FirebasePurchaseDelegate {
                 "password": core.iosVerifierOptions.sharedSecret,
                 "productId": purchase.productID,
                 "path": product.targetPath?.applyTags(),
-                "user": core.userId,
-                "expiryDateKey": core.subscribeOptions.expiryDateKey,
-                "renewDuration":
-                    core.subscribeOptions.renewDuration.inMilliseconds,
-                "userIDKey": core.subscribeOptions.userIDKey,
-                "platformKey": core.subscribeOptions.platformKey,
-                "tokenKey": core.subscribeOptions.tokenKey,
-                "packageNameKey": core.subscribeOptions.packageNameKey,
-                "orderIDKey": core.subscribeOptions.orderIDKey,
-                "productIDKey": core.subscribeOptions.productIDKey,
-                "expiredKey": core.subscribeOptions.expiredKey
+                "user": core.userId
               });
           if (isEmpty(task.data)) return false;
           Map map = task.data as Map;
