@@ -79,6 +79,7 @@ class FirebasePurchaseDelegate {
                 "renewDuration":
                     core.subscribeOptions.renewDuration.inMilliseconds,
                 "userIDKey": core.subscribeOptions.userIDKey,
+                "platformKey": core.subscribeOptions.platformKey,
                 "tokenKey": core.subscribeOptions.tokenKey,
                 "packageNameKey": core.subscribeOptions.packageNameKey,
                 "orderIDKey": core.subscribeOptions.orderIDKey,
@@ -145,6 +146,7 @@ class FirebasePurchaseDelegate {
                 "renewDuration":
                     core.subscribeOptions.renewDuration.inMilliseconds,
                 "userIDKey": core.subscribeOptions.userIDKey,
+                "platformKey": core.subscribeOptions.platformKey,
                 "tokenKey": core.subscribeOptions.tokenKey,
                 "packageNameKey": core.subscribeOptions.packageNameKey,
                 "orderIDKey": core.subscribeOptions.orderIDKey,
