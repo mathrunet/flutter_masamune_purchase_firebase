@@ -28,10 +28,7 @@ class FirebasePurchaseDelegate {
           FunctionsTask task = await FunctionsTask.call(
               core.androidVerifierOptions.consumableVerificationServer,
               postData: {
-                "refreshToken": core.androidRefreshToken,
                 "purchaseId": purchase.purchaseID,
-                "clientId": core.androidVerifierOptions.clientId,
-                "clientSecret": core.androidVerifierOptions.clientSecret,
                 "packageName": purchase.billingClientPurchase.packageName,
                 "productId": purchase.productID,
                 "purchaseToken": purchase.billingClientPurchase.purchaseToken,
@@ -49,10 +46,7 @@ class FirebasePurchaseDelegate {
           FunctionsTask task = await FunctionsTask.call(
               core.androidVerifierOptions.nonconsumableVerificationServer,
               postData: {
-                "refreshToken": core.androidRefreshToken,
                 "purchaseId": purchase.purchaseID,
-                "clientId": core.androidVerifierOptions.clientId,
-                "clientSecret": core.androidVerifierOptions.clientSecret,
                 "packageName": purchase.billingClientPurchase.packageName,
                 "productId": purchase.productID,
                 "purchaseToken": purchase.billingClientPurchase.purchaseToken,
@@ -69,10 +63,7 @@ class FirebasePurchaseDelegate {
           FunctionsTask task = await FunctionsTask.call(
               core.androidVerifierOptions.subscriptionVerificationServer,
               postData: {
-                "refreshToken": core.androidRefreshToken,
                 "purchaseId": purchase.purchaseID,
-                "clientId": core.androidVerifierOptions.clientId,
-                "clientSecret": core.androidVerifierOptions.clientSecret,
                 "packageName": purchase.billingClientPurchase.packageName,
                 "productId": purchase.productID,
                 "purchaseToken": purchase.billingClientPurchase.purchaseToken,
@@ -98,7 +89,6 @@ class FirebasePurchaseDelegate {
               core.iosVerifierOptions.consumableVerificationServer,
               postData: {
                 "receiptData": purchase.verificationData.serverVerificationData,
-                "password": core.iosVerifierOptions.sharedSecret,
                 "purchaseId": purchase.purchaseID,
                 "productId": purchase.productID,
                 "path": product.targetPath?.applyTags(),
@@ -115,7 +105,6 @@ class FirebasePurchaseDelegate {
               core.iosVerifierOptions.nonconsumableVerificationServer,
               postData: {
                 "receiptData": purchase.verificationData.serverVerificationData,
-                "password": core.iosVerifierOptions.sharedSecret,
                 "purchaseId": purchase.purchaseID,
                 "productId": purchase.productID,
                 "path": product.targetPath?.applyTags(),
@@ -131,7 +120,6 @@ class FirebasePurchaseDelegate {
               core.iosVerifierOptions.subscriptionVerificationServer,
               postData: {
                 "receiptData": purchase.verificationData.serverVerificationData,
-                "password": core.iosVerifierOptions.sharedSecret,
                 "purchaseId": purchase.purchaseID,
                 "productId": purchase.productID,
                 "path": product.targetPath?.applyTags(),
