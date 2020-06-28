@@ -29,6 +29,7 @@ class FirebasePurchaseDelegate {
               core.androidVerifierOptions.consumableVerificationServer,
               postData: {
                 "refreshToken": core.androidRefreshToken,
+                "purchaseId": purchase.purchaseID,
                 "clientId": core.androidVerifierOptions.clientId,
                 "clientSecret": core.androidVerifierOptions.clientSecret,
                 "packageName": purchase.billingClientPurchase.packageName,
@@ -49,6 +50,7 @@ class FirebasePurchaseDelegate {
               core.androidVerifierOptions.nonconsumableVerificationServer,
               postData: {
                 "refreshToken": core.androidRefreshToken,
+                "purchaseId": purchase.purchaseID,
                 "clientId": core.androidVerifierOptions.clientId,
                 "clientSecret": core.androidVerifierOptions.clientSecret,
                 "packageName": purchase.billingClientPurchase.packageName,
@@ -68,6 +70,7 @@ class FirebasePurchaseDelegate {
               core.androidVerifierOptions.subscriptionVerificationServer,
               postData: {
                 "refreshToken": core.androidRefreshToken,
+                "purchaseId": purchase.purchaseID,
                 "clientId": core.androidVerifierOptions.clientId,
                 "clientSecret": core.androidVerifierOptions.clientSecret,
                 "packageName": purchase.billingClientPurchase.packageName,
@@ -83,9 +86,7 @@ class FirebasePurchaseDelegate {
           if (map == null ||
               startTimeMillis == null ||
               expiryTimeMillis == null ||
-              startTimeMillis <= 0 ||
-              expiryTimeMillis <= DateTime.now().toUtc().millisecondsSinceEpoch)
-            return false;
+              startTimeMillis <= 0) return false;
           break;
       }
     } else if (Config.isIOS) {
@@ -98,6 +99,7 @@ class FirebasePurchaseDelegate {
               postData: {
                 "receiptData": purchase.verificationData.serverVerificationData,
                 "password": core.iosVerifierOptions.sharedSecret,
+                "purchaseId": purchase.purchaseID,
                 "productId": purchase.productID,
                 "path": product.targetPath?.applyTags(),
                 "value": product.value,
@@ -114,6 +116,7 @@ class FirebasePurchaseDelegate {
               postData: {
                 "receiptData": purchase.verificationData.serverVerificationData,
                 "password": core.iosVerifierOptions.sharedSecret,
+                "purchaseId": purchase.purchaseID,
                 "productId": purchase.productID,
                 "path": product.targetPath?.applyTags(),
                 "user": core.userId
@@ -129,6 +132,7 @@ class FirebasePurchaseDelegate {
               postData: {
                 "receiptData": purchase.verificationData.serverVerificationData,
                 "password": core.iosVerifierOptions.sharedSecret,
+                "purchaseId": purchase.purchaseID,
                 "productId": purchase.productID,
                 "path": product.targetPath?.applyTags(),
                 "user": core.userId
@@ -137,14 +141,14 @@ class FirebasePurchaseDelegate {
           Map map = task.data as Map;
           if (map == null || !map.containsKey("status") || map["status"] != 0)
             return false;
-          int startTimeMillis = int.tryParse( map["latest_receipt_info"].first["purchase_date_ms"] );        
-          int expiryTimeMillis = int.tryParse( map["latest_receipt_info"].first["expires_date_ms"] );
+          int startTimeMillis = int.tryParse(
+              map["latest_receipt_info"].first["purchase_date_ms"]);
+          int expiryTimeMillis =
+              int.tryParse(map["latest_receipt_info"].first["expires_date_ms"]);
           if (map == null ||
               startTimeMillis == null ||
               expiryTimeMillis == null ||
-              startTimeMillis <= 0 ||
-              expiryTimeMillis <= DateTime.now().toUtc().millisecondsSinceEpoch)
-            return false;
+              startTimeMillis <= 0) return false;
           break;
       }
     }
