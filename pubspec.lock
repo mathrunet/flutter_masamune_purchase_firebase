@@ -276,7 +276,7 @@ packages:
     source: sdk
     version: "0.0.0"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       url: "https://pub.dartlang.org"
@@ -348,37 +348,37 @@ packages:
   masamune_core:
     dependency: "direct main"
     description:
-      path: "../masamune_core"
-      relative: true
-    source: path
-    version: "0.2.14+2"
+      name: masamune_core
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0"
   masamune_firebase:
     dependency: "direct main"
     description:
-      path: "../masamune_firebase"
-      relative: true
-    source: path
-    version: "0.2.10+6"
+      name: masamune_firebase
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0"
   masamune_firebase_mobile:
     dependency: "direct main"
     description:
-      path: "../masamune_firebase_mobile"
-      relative: true
-    source: path
-    version: "0.2.2+2"
+      name: masamune_firebase_mobile
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0"
   masamune_flutter:
     dependency: "direct main"
     description:
-      path: "../masamune_flutter"
-      relative: true
-    source: path
-    version: "0.2.18+5"
+      name: masamune_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0+2"
   masamune_localize:
     dependency: "direct main"
     description:
-      path: "../masamune_localize"
-      relative: true
-    source: path
+      name: masamune_localize
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.2.8"
   masamune_mobile:
     dependency: transitive
@@ -386,14 +386,14 @@ packages:
       name: masamune_mobile
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.2+1"
+    version: "0.3.0"
   masamune_purchase:
     dependency: "direct main"
     description:
-      path: "../masamune_purchase"
-      relative: true
-    source: path
-    version: "0.1.0"
+      name: masamune_purchase
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0"
   masamune_test:
     dependency: "direct dev"
     description:
@@ -533,7 +533,14 @@ packages:
       name: shared_preferences
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.6+3"
+    version: "0.5.8"
+  shared_preferences_linux:
+    dependency: transitive
+    description:
+      name: shared_preferences_linux
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.2+1"
   shared_preferences_macos:
     dependency: transitive
     description:
@@ -556,7 +563,7 @@ packages:
     source: hosted
     version: "0.1.2+7"
   simple_rsa:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: simple_rsa
       url: "https://pub.dartlang.org"
