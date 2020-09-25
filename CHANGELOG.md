@@ -1,3 +1,7 @@
+## [0.5.0] - Update README (2020.09.25)
+
+* Support for flutter_hooks and flutter_widget_model.
+
 ## [0.3.0] - Update README (2020.07.24)
 
 * Supports version upgrades of core and flutter.
