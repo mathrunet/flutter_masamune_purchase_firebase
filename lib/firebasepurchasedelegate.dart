@@ -14,15 +14,15 @@ class FirebasePurchaseDelegate {
   static Future<bool> verifyAndDeliver(PurchaseDetails purchase,
       PurchaseProduct product, PurchaseCore core) async {
     if (Config.isAndroid) {
-      if (core.androidVerifierOptions == null ||
-          isEmpty(core.androidRefreshToken) ||
-          isEmpty(core.androidVerifierOptions.clientId) ||
-          isEmpty(core.androidVerifierOptions.clientSecret) ||
-          isEmpty(core.androidVerifierOptions.publicKey)) return false;
-      if (!await verifyString(
-          purchase.verificationData.localVerificationData,
-          purchase.billingClientPurchase.signature,
-          core.androidVerifierOptions.publicKey)) return false;
+      // if (core.androidVerifierOptions == null ||
+      //     isEmpty(core.androidRefreshToken) ||
+      //     isEmpty(core.androidVerifierOptions.clientId) ||
+      //     isEmpty(core.androidVerifierOptions.clientSecret) ||
+      //     isEmpty(core.androidVerifierOptions.publicKey)) return false;
+      // if (!await verifyString(
+      //     purchase.verificationData.localVerificationData,
+      //     purchase.billingClientPurchase.signature,
+      //     core.androidVerifierOptions.publicKey)) return false;
       switch (product.type) {
         case ProductType.consumable:
           FunctionsTask task = await FunctionsTask.call(
@@ -81,8 +81,8 @@ class FirebasePurchaseDelegate {
           break;
       }
     } else if (Config.isIOS) {
-      if (core.iosVerifierOptions == null ||
-          isEmpty(core.iosVerifierOptions.sharedSecret)) return false;
+      // if (core.iosVerifierOptions == null ||
+      //     isEmpty(core.iosVerifierOptions.sharedSecret)) return false;
       switch (product.type) {
         case ProductType.consumable:
           FunctionsTask task = await FunctionsTask.call(
