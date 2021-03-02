@@ -1,4 +1,4 @@
-// Copyright 2020 mathru. All rights reserved.
+// Copyright 2021 mathru. All rights reserved.
 
 /// Masamune purchasing framework library with firebase.
 ///
@@ -6,18 +6,16 @@
 ///
 /// [mathru.net]: https://mathru.net
 /// [YouTube]: https://www.youtube.com/c/mathrunetchannel
-library masamune.purchase.firebase;
+library masamune_purchase_firebase;
 
 import 'package:http/http.dart';
-import 'package:masamune_firebase_mobile/masamune_firebase_mobile.dart';
-import 'package:simple_rsa/simple_rsa.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
-import 'package:masamune_flutter/masamune_flutter.dart';
+import 'package:masamune/masamune.dart';
+import 'package:firebase_model_notifier/firebase_model_notifier.dart';
 import 'package:masamune_purchase/masamune_purchase.dart';
 
-export 'package:masamune_flutter/masamune_flutter.dart';
+export 'package:masamune/masamune.dart';
 export 'package:masamune_purchase/masamune_purchase.dart';
-export 'package:masamune_firebase/masamune_firebase.dart';
-export 'package:masamune_firebase_mobile/masamune_firebase_mobile.dart';
+export 'package:firebase_model_notifier/firebase_model_notifier.dart';
 
-part 'firebasepurchasedelegate.dart';
+part 'firebase_purchase_delegate.dart';
