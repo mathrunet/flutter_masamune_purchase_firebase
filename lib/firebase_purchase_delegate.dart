@@ -12,7 +12,7 @@ class FirebasePurchaseDelegate {
   /// [product]: The purchased product.
   /// [core]: Purchase Core instance.
   static Future<bool> verifyAndDeliver(PurchaseDetails purchase,
-      PurchaseProduct product, PurchaseCoreModel core) async {
+      PurchaseProduct product, PurchaseModel core) async {
     if (Config.isAndroid) {
       switch (product.type) {
         case ProductType.consumable:
