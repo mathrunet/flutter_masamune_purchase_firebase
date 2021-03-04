@@ -66,7 +66,7 @@ class FirebasePurchaseDelegate {
           if (data is Map<String, dynamic>) return false;
           final map = data as Map<String, dynamic>;
           int startTimeMillis =
-              int.tryParse(map.get<String>("startTimeMillis").def("0")) ?? 0;
+              int.tryParse(map.get<String>("startTimeMillis", "0")).def(0);
           if (startTimeMillis <= 0) {
             return false;
           }
@@ -127,13 +127,11 @@ class FirebasePurchaseDelegate {
           if (!map.containsKey("status") || map["status"] != 0) {
             return false;
           }
-          final latestReceiptInfo = map
-                  .get<List<Map<String, dynamic>>>("latest_receipt_info")
-                  ?.first ??
-              {};
-          int startTimeMillis = int.tryParse(
-                  latestReceiptInfo.get<String>("purchase_date_ms").def("0")) ??
-              0;
+          final latestReceiptInfo = map.get<List<Map<String, dynamic>>>(
+              "latest_receipt_info", const []).first;
+          int startTimeMillis =
+              int.tryParse(latestReceiptInfo.get("purchase_date_ms", "0"))
+                  .def(0);
           if (startTimeMillis <= 0) {
             return false;
           }
