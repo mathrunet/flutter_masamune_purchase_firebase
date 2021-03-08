@@ -1,6 +1,6 @@
 name: masamune_purchase_firebase
 description: Plugin that extends the billing system plugin to the processing by the server (Firebase).
-version: 0.8.0-nullsafety.7
+version: 0.8.0-nullsafety.9
 homepage: https://mathru.net
 repository: https://github.com/mathrunet/flutter_masamune_purchase_firebase
 
@@ -14,10 +14,10 @@ dependencies:
 
   masamune: ^0.8.0-nullsafety
   masamune_mobile: ^0.8.0-nullsafety
-  firebase_model_notifier: ^0.8.0-nullsafety
+  masamune_firebase: ^0.8.0-nullsafety
   masamune_purchase: ^0.8.0-nullsafety
-  http: ^0.13.0-nullsafety
-  in_app_purchase: ^0.4.1
+  http: ^0.13.0
+  in_app_purchase: ^0.5.1
 
 dev_dependencies:
   flutter_test:
