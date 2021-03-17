@@ -18,7 +18,7 @@ class FirebasePurchaseDelegate {
         case ProductType.consumable:
           final functions = readProvider(functionsProvider(
               core.androidVerifierOptions.consumableVerificationServer ?? ""));
-          final data = functions.call(parameters: {
+          final data = await functions.call(parameters: {
             "purchaseId": purchase.purchaseID,
             "packageName": purchase.billingClientPurchase?.packageName,
             "productId": purchase.productID,
@@ -27,9 +27,9 @@ class FirebasePurchaseDelegate {
             "value": product.value,
             "user": core.userId
           });
-          if (data is Map<String, dynamic>) return false;
-          final map = data as Map<String, dynamic>;
-          if (!map.containsKey("purchaseState") || map["purchaseState"] != 0) {
+          if (data is! Map) return false;
+          if (!data.containsKey("purchaseState") ||
+              data["purchaseState"] != 0) {
             return false;
           }
           break;
@@ -37,7 +37,7 @@ class FirebasePurchaseDelegate {
           final functions = readProvider(functionsProvider(
               core.androidVerifierOptions.nonconsumableVerificationServer ??
                   ""));
-          final data = functions.call(parameters: {
+          final data = await functions.call(parameters: {
             "purchaseId": purchase.purchaseID,
             "packageName": purchase.billingClientPurchase?.packageName,
             "productId": purchase.productID,
@@ -45,9 +45,9 @@ class FirebasePurchaseDelegate {
             "path": product.targetPath,
             "user": core.userId
           });
-          if (data is Map<String, dynamic>) return false;
-          final map = data as Map<String, dynamic>;
-          if (!map.containsKey("purchaseState") || map["purchaseState"] != 0) {
+          if (data is! Map) return false;
+          if (!data.containsKey("purchaseState") ||
+              data["purchaseState"] != 0) {
             return false;
           }
           break;
@@ -55,7 +55,7 @@ class FirebasePurchaseDelegate {
           final functions = readProvider(functionsProvider(
               core.androidVerifierOptions.subscriptionVerificationServer ??
                   ""));
-          final data = functions.call(parameters: {
+          final data = await functions.call(parameters: {
             "purchaseId": purchase.purchaseID,
             "packageName": purchase.billingClientPurchase?.packageName,
             "productId": purchase.productID,
@@ -63,10 +63,10 @@ class FirebasePurchaseDelegate {
             "path": product.targetPath,
             "user": core.userId
           });
-          if (data is Map<String, dynamic>) return false;
-          final map = data as Map<String, dynamic>;
-          int startTimeMillis =
-              int.tryParse(map.get<String>("startTimeMillis", "0")).def(0);
+          if (data is! Map) return false;
+          int startTimeMillis = data.containsKey("startTimeMillis")
+              ? int.tryParse(data["startTimeMillis"]).def(0)
+              : 0;
           if (startTimeMillis <= 0) {
             return false;
           }
@@ -80,7 +80,7 @@ class FirebasePurchaseDelegate {
           final functions = readProvider(functionsProvider(
               core.androidVerifierOptions.subscriptionVerificationServer ??
                   ""));
-          final data = functions.call(parameters: {
+          final data = await functions.call(parameters: {
             "receiptData": purchase.verificationData.serverVerificationData,
             "purchaseId": purchase.purchaseID,
             "productId": purchase.productID,
@@ -88,9 +88,8 @@ class FirebasePurchaseDelegate {
             "value": product.value,
             "user": core.userId
           });
-          if (data is Map<String, dynamic>) return false;
-          final map = data as Map<String, dynamic>;
-          if (!map.containsKey("status") || map["status"] != 0) {
+          if (data is! Map) return false;
+          if (!data.containsKey("status") || data["status"] != 0) {
             return false;
           }
           break;
@@ -98,16 +97,15 @@ class FirebasePurchaseDelegate {
           final functions = readProvider(functionsProvider(
               core.androidVerifierOptions.subscriptionVerificationServer ??
                   ""));
-          final data = functions.call(parameters: {
+          final data = await functions.call(parameters: {
             "receiptData": purchase.verificationData.serverVerificationData,
             "purchaseId": purchase.purchaseID,
             "productId": purchase.productID,
             "path": product.targetPath,
             "user": core.userId
           });
-          if (data is Map<String, dynamic>) return false;
-          final map = data as Map<String, dynamic>;
-          if (!map.containsKey("status") || map["status"] != 0) {
+          if (data is! Map) return false;
+          if (!data.containsKey("status") || data["status"] != 0) {
             return false;
           }
           break;
@@ -115,20 +113,21 @@ class FirebasePurchaseDelegate {
           final functions = readProvider(functionsProvider(
               core.androidVerifierOptions.subscriptionVerificationServer ??
                   ""));
-          final data = functions.call(parameters: {
+          final data = await functions.call(parameters: {
             "receiptData": purchase.verificationData.serverVerificationData,
             "purchaseId": purchase.purchaseID,
             "productId": purchase.productID,
             "path": product.targetPath,
             "user": core.userId
           });
-          if (data is Map<String, dynamic>) return false;
-          final map = data as Map<String, dynamic>;
-          if (!map.containsKey("status") || map["status"] != 0) {
+          if (data is! Map) return false;
+          if (!data.containsKey("status") || data["status"] != 0) {
             return false;
           }
-          final latestReceiptInfo = map.get<List<Map<String, dynamic>>>(
-              "latest_receipt_info", const []).first;
+          final latestReceiptInfo = data.containsKey("latest_receipt_info")
+              ? (data["latest_receipt_info"] as List<Map<String, dynamic>>)
+                  .first
+              : const <String, dynamic>{};
           int startTimeMillis =
               int.tryParse(latestReceiptInfo.get("purchase_date_ms", "0"))
                   .def(0);
