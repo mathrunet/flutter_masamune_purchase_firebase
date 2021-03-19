@@ -64,10 +64,17 @@ class FirebasePurchaseDelegate {
             "user": core.userId
           });
           if (data is! Map) return false;
-          int startTimeMillis = data.containsKey("startTimeMillis")
+          final now = DateTime.now();
+          final startTimeMillis = data.containsKey("startTimeMillis")
               ? int.tryParse(data["startTimeMillis"]).def(0)
               : 0;
+          final expiresTimeMillis = data.containsKey("expiryTimeMillis")
+              ? int.tryParse(data["expiryTimeMillis"]).def(0)
+              : 0;
           if (startTimeMillis <= 0) {
+            return false;
+          }
+          if (expiresTimeMillis <= now.millisecondsSinceEpoch) {
             return false;
           }
           break;
@@ -78,8 +85,7 @@ class FirebasePurchaseDelegate {
       switch (product.type) {
         case ProductType.consumable:
           final functions = readProvider(functionsProvider(
-              core.androidVerifierOptions.subscriptionVerificationServer ??
-                  ""));
+              core.iosVerifierOptions.consumableVerificationServer ?? ""));
           final data = await functions.call(parameters: {
             "receiptData": purchase.verificationData.serverVerificationData,
             "purchaseId": purchase.purchaseID,
@@ -95,8 +101,7 @@ class FirebasePurchaseDelegate {
           break;
         case ProductType.nonConsumable:
           final functions = readProvider(functionsProvider(
-              core.androidVerifierOptions.subscriptionVerificationServer ??
-                  ""));
+              core.iosVerifierOptions.nonconsumableVerificationServer ?? ""));
           final data = await functions.call(parameters: {
             "receiptData": purchase.verificationData.serverVerificationData,
             "purchaseId": purchase.purchaseID,
@@ -111,8 +116,7 @@ class FirebasePurchaseDelegate {
           break;
         case ProductType.subscription:
           final functions = readProvider(functionsProvider(
-              core.androidVerifierOptions.subscriptionVerificationServer ??
-                  ""));
+              core.iosVerifierOptions.subscriptionVerificationServer ?? ""));
           final data = await functions.call(parameters: {
             "receiptData": purchase.verificationData.serverVerificationData,
             "purchaseId": purchase.purchaseID,
@@ -124,14 +128,23 @@ class FirebasePurchaseDelegate {
           if (!data.containsKey("status") || data["status"] != 0) {
             return false;
           }
+          final now = DateTime.now();
           final latestReceiptInfo = data.containsKey("latest_receipt_info")
-              ? (data["latest_receipt_info"] as List<Map<String, dynamic>>)
+              ? (data["latest_receipt_info"] as List)
+                  .cast<Map>()
                   .first
+                  .cast<String, dynamic>()
               : const <String, dynamic>{};
-          int startTimeMillis =
+          final startTimeMillis =
               int.tryParse(latestReceiptInfo.get("purchase_date_ms", "0"))
                   .def(0);
+          final expiresTimeMillis =
+              int.tryParse(latestReceiptInfo.get("expires_date_ms", "0"))
+                  .def(0);
           if (startTimeMillis <= 0) {
+            return false;
+          }
+          if (expiresTimeMillis <= now.millisecondsSinceEpoch) {
             return false;
           }
           break;
