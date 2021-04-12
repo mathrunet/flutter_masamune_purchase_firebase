@@ -52,6 +52,8 @@ class FirebasePurchaseDelegate {
           }
           break;
         case ProductType.subscription:
+          final params =
+              (await product.subscriptionData?.call(purchase, core)) ?? {};
           final functions = readProvider(functionsProvider(
               core.androidVerifierOptions.subscriptionVerificationServer ??
                   ""));
@@ -61,7 +63,8 @@ class FirebasePurchaseDelegate {
             "productId": purchase.productID,
             "purchaseToken": purchase.billingClientPurchase?.purchaseToken,
             "path": product.targetPath,
-            "user": core.userId
+            "user": core.userId,
+            "data": params,
           });
           if (data is! Map) return false;
           final now = DateTime.now();
@@ -115,6 +118,8 @@ class FirebasePurchaseDelegate {
           }
           break;
         case ProductType.subscription:
+          final params =
+              (await product.subscriptionData?.call(purchase, core)) ?? {};
           final functions = readProvider(functionsProvider(
               core.iosVerifierOptions.subscriptionVerificationServer ?? ""));
           final data = await functions.call(parameters: {
@@ -122,7 +127,8 @@ class FirebasePurchaseDelegate {
             "purchaseId": purchase.purchaseID,
             "productId": purchase.productID,
             "path": product.targetPath,
-            "user": core.userId
+            "user": core.userId,
+            "data": params,
           });
           if (data is! Map) return false;
           if (!data.containsKey("status") || data["status"] != 0) {
