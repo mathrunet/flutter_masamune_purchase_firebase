@@ -1,11 +1,11 @@
 name: masamune_purchase_firebase
 description: Plugin that extends the billing system plugin to the processing by the server (Firebase).
-version: 0.8.2
+version: 0.8.2+1
 homepage: https://mathru.net
 repository: https://github.com/mathrunet/flutter_masamune_purchase_firebase
 
 environment:
-  sdk: ">=2.12.0-0 <3.0.0"
+  sdk: ">=2.13.0-0 <3.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
@@ -13,7 +13,6 @@ dependencies:
     sdk: flutter
 
   masamune: ^0.8.0
-  masamune_mobile: ^0.8.0
   masamune_firebase: ^0.8.0
   masamune_purchase: ^0.8.0
   http: ^0.13.0
